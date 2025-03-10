@@ -1,55 +1,60 @@
+// Grupo y versión del proyecto
 group 'dev.fluttercommunity.plus.share'
 version '1.0-SNAPSHOT'
 
+// Configuración inicial para el script de Gradle
 buildscript {
-    ext.kotlin_version = '1.7.22'
+    ext.kotlin_version = '1.7.22' // Versión de Kotlin
     repositories {
-        google()
-        mavenCentral()
+        google() // Repositorio de Google
+        mavenCentral() // Repositorio Maven Central
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.3.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:8.3.1' // Plugin de Gradle para Android
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Plugin de Kotlin
     }
 }
 
-rootProject.allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+// Aplicar plugins
+apply plugin: 'com.android.library' // Plugin para bibliotecas Android
+apply plugin: 'kotlin-android' // Plugin para Kotlin en Android
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
+// Configuración de Android
 android {
-    compileSdk 34
+    compileSdk 34 // Versión del SDK de compilación
 
-    namespace 'dev.fluttercommunity.plus.share'
+    namespace 'dev.fluttercommunity.plus.share' // Espacio de nombres (namespace)
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17 // Compatibilidad con Java 17
         targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = 17
+        jvmTarget = '17' // Versión de JVM para Kotlin
     }
 
     defaultConfig {
-        minSdk 19
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk 19 // Versión mínima del SDK
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Runner para pruebas
     }
 
     lintOptions {
-        disable 'InvalidPackage'
+        disable 'InvalidPackage' // Desactivar advertencias específicas de Lint
     }
+}
 
-    dependencies {
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-        implementation 'androidx.core:core-ktx:1.13.1'
-        implementation 'androidx.annotation:annotation:1.8.2'
+// Configuración de dependencias
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Biblioteca estándar de Kotlin
+    implementation 'androidx.core:core-ktx:1.13.1' // Extensiones de AndroidX Core
+    implementation 'androidx.annotation:annotation:1.8.2' // Anotaciones de AndroidX
+}
+
+// Configuración global de repositorios para todos los proyectos
+rootProject.allprojects {
+    repositories {
+        google() // Repositorio de Google
+        mavenCentral() // Repositorio Maven Central
     }
 }
